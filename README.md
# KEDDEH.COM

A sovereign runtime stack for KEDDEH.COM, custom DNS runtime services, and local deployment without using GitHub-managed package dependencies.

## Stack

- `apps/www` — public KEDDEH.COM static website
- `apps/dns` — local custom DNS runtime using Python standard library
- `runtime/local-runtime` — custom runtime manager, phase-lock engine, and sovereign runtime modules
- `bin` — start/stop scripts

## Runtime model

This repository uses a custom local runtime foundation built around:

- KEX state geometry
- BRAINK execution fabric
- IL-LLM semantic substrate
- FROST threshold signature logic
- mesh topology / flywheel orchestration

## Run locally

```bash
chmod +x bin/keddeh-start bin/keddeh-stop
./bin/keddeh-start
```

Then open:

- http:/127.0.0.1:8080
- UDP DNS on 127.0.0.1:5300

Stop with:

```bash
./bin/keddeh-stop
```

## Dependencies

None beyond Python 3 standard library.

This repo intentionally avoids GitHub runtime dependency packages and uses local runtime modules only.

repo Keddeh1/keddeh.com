@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+
+if [ -f "$ROOT/.runtime_pids" ]; then
+  while read -r pid1 pid2; do
+    [ -n "$pid1" ] && kill "$pid1" 2>/dev/null || true
+    [ -n "$pid2" ] && kill "$pid2" 2>/dev/null || true
+  done < "$ROOT/.runtime_pids"
+  rm -f "$ROOT/.runtime_pids"
+fi
+
+echo "[KEDDEH] runtime stopped"
