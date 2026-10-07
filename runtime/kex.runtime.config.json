@@ -1,0 +1,91 @@
+{
+  "version": "1.0.0",
+  "name": "KEX Custom Runtime Environment",
+  "description": "Autonomous wire-based compute substrate with 0.297 Kuramoto phase-lock governance",
+  "architecture": "sovereign_triad",
+  "components": {
+    "kex": {
+      "role": "state_geometry_identity",
+      "partition_boot": "/kex_boot",
+      "partition_runtime": "/kex_runtime",
+      "boot_format": "FAT32",
+      "runtime_format": "ext4",
+      "partitions": {
+        "kex_boot": {
+          "master_sentinel_seeds": "active",
+          "boot_manifests": "active",
+          "frost_threshold_signatures": "active"
+        },
+        "kex_runtime": {
+          "slot_a": "active",
+          "slot_b": "staging"
+        }
+      }
+    },
+    "braink": {
+      "role": "governed_execution_fabric",
+      "features": [
+        "permitted_state_transitions",
+        "evidence_logging",
+        "independent_verification",
+        "non_destructive_updates"
+      ],
+      "signature_scheme": "FROST_Round_2",
+      "finite_field": "Ed25519_F_q",
+      "ipc_socket": "/var/run/kex_hci.sock"
+    },
+    "il_llm": {
+      "role": "local_first_semantic_substrate",
+      "features": [
+        "domain_knowledge_traversal",
+        "persistent_indexes",
+        "relation_graphs"
+      ],
+      "context_mode": "traversal_based"
+    }
+  },
+  "resonance": {
+    "kuramoto_target": 0.297,
+    "unit": "rad/s",
+    "coupling_gain_k": "adaptive",
+    "coherence_formula": "1.0 - |θᵢ(t) - 0.297|",
+    "critical_health_threshold": 0.75,
+    "stochastic_noise_source": "environmental_jitter"
+  },
+  "mesh_topology": {
+    "type": "hierarchical_overlay",
+    "intra_domain_coupling": "K_h",
+    "inter_domain_coupling": "K_v",
+    "domain_state_compression": "macrostate_order_parameter",
+    "macrostate_fields": {
+      "R_g": "domain_coherence",
+      "Ψ_g": "aggregate_phase_angle"
+    }
+  },
+  "flywheel_mode": {
+    "autonomous_operation": true,
+    "local_frequency_reference": 0.297,
+    "soft_phase_capture_formula": "Kᵥ(t) = Kᵥ,max * (1 - e^(-(t - tᵣ)/Tᵣ))",
+    "wrapped_phase_error": "S1_circle_arithmetic"
+  },
+  "invariants": {
+    "software_on_wire": "State lives as unanchored waves on network transmission lines",
+    "spatial_memory_geometry": "[Plane, Line, Column] coordinates with 1:1 injective hardware mapping",
+    "phase_lock_governance": "0.297 Kuramoto prevents runaway process replication",
+    "lineage_invariance": "Parent loss ≠> Child state loss",
+    "topological_invariance": "Topological re-rooting ≠> Phase discontinuity"
+  },
+  "security": {
+    "authorization_model": "spatial_geometry",
+    "firewall_model": "void_dropout_on_broken_pointers",
+    "cryptographic_consensus": "FROST_threshold_signatures",
+    "lagrange_field": "Ed25519_prime_F_q"
+  },
+  "autogenetic_fork_policy": {
+    "trigger_condition": "health < 0.75",
+    "fork_method": "child_process_spawn",
+    "memory_heap": "fresh_unlinked",
+    "port_offset": "+3",
+    "runaway_prevention": "phase_noise_collapse_self_kill"
+  }
+}

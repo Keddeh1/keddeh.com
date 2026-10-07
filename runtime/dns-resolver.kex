@@ -1,0 +1,141 @@
+# DNS Resolver - KEX Runtime Module
+# Wire-based autonomous DNS resolution using Sovereign Triad architecture
+
+[MODULE]
+name = "dns_resolver"
+version = "1.0.0"
+type = "network_service"
+execution_mode = "governed"
+resonance_target = 0.297
+
+[DEPENDENCIES]
+# NO GITHUB PACKAGES - All dependencies are custom KEX/BRAINK runtimes
+kex_state_geometry = "local:///kex_runtime/slot_a/lib/kex_state_geometry.so"
+braink_execution = "local:///kex_runtime/slot_a/lib/braink_execution.so"
+il_llm_semantic = "local:///kex_runtime/slot_a/lib/il_llm_semantic.so"
+frost_signatures = "local:///kex_boot/frost_threshold_signatures"
+
+[MESH_TOPOLOGY]
+# Hierarchical overlay with dual-homing
+port_base = 5300
+intra_domain_coupling = "K_h"
+inter_domain_coupling = "K_v"
+macrostate_compression = "enabled"
+autogenetic_fork_enabled = true
+health_threshold = 0.75
+
+[RESONANCE]
+# 0.297 Kuramoto phase-lock governor
+kuramoto_target = 0.297
+coupling_gain = "adaptive"
+coherence_formula = "1.0 - |θᵢ(t) - 0.297|"
+stochastic_noise = "environmental"
+
+[SPATIAL_MEMORY]
+# Zero-less matrix with [Plane, Line, Column] coordinates
+architecture = "injective_1to1_hardware_mapping"
+offset_formula = "(row_adj * 3161 + col_adj) * 110 MB"
+security_model = "spatial_pointer_geometry"
+unauthorized_paths = "void_dropout"
+
+[BRAINK_EVIDENCE]
+# Governed execution with independent verification
+state_transitions = "permitted_only"
+evidence_logging = "mandatory"
+independent_verification = "worker_uncertifiable"
+non_destructive_updates = "FROST_Round_2_signatures"
+
+[FLYWHEEL_MODE]
+# Autonomous operation on parent loss
+autonomous_enabled = true
+local_frequency_reference = 0.297
+soft_phase_capture = "exponential_ramp"
+phase_error_model = "wrapped_S1_circle"
+
+[IPC]
+ipc_socket = "/var/run/kex_hci.sock"
+protocol = "high_speed_unix_domain"
+metrics_routing = "non_blocking"
+
+[FUNCTIONS]
+
+resolve_domain(query: string, source_plane: int) -> DNSRecord {
+  // Spatial memory lookup without file handles or firewall filtering
+  coordinate = query_to_coordinate(query, source_plane)
+  if pointer_path_broken(coordinate) {
+    return NULL  // Unauthorized path drops into void
+  }
+  record = spatial_lookup(coordinate)
+  return record
+}
+
+phase_align_mesh() {
+  // Continuous phase-locked consensus across overlay mesh
+  for each node in mesh {
+    phase_error = abs(node.phase - 0.297)
+    coherence = 1.0 - phase_error
+    if coherence < 0.75 {
+      trigger_autogenetic_fork(node)
+    } else {
+      suppress_fork()
+    }
+  }
+}
+
+autogenetic_fork(node: MeshNode) -> ChildProcess {
+  // Self-healing via isolated child process spawn
+  health = node.coherence
+  if health < 0.75 {
+    child = spawn_on_port(node.port + 3)
+    child.memory_heap = fresh_unlinked()
+    child.genesis_state = node.state
+    return child
+  }
+}
+
+soft_re_anchor(child: ChildProcess, new_parent: MeshNode) -> void {
+  // Smooth phase capture without discontinuities
+  phase_error = wrapped_phase_error_S1(child.phase, new_parent.phase)
+  capture_time = now()
+  tau = soft_capture_tau
+  
+  for t in range(capture_time, capture_time + 5000ms) {
+    progress = 1.0 - exp(-(t - capture_time) / tau)
+    Kv(t) = Kv_max * progress
+    child.phase <- Kv(t) * new_parent.phase
+    yield()
+  }
+}
+
+frost_consensus(state_update: Bytes) -> bool {
+  // Distributed multiparty signature reconstruction
+  threshold = 2  // Configurable
+  shares = collect_lagrange_shares(state_update)
+  
+  if len(shares) >= threshold {
+    lagrange_coefficients = compute_lagrange_over_F_q(shares)
+    master_signature = reconstruct_without_exposure(lagrange_coefficients)
+    return verify_signature(master_signature)
+  }
+  return false
+}
+
+[STARTUP]
+// Bootstrap without GitHub dependencies
+initialize_kex_boot_partition()
+initialize_kex_runtime_partitions()
+initialize_ipc_socket()
+initialize_mesh_topology()
+activate_kuramoto_phase_lock(0.297)
+initialize_braink_evidence_chain()
+initialize_il_llm_traversal()
+start_health_monitoring_daemon()
+start_mesh_synchronization()
+
+[SHUTDOWN]
+// Graceful termination with state preservation
+log_evidence_chain()
+preserve_domain_macrostate()
+close_ipc_socket()
+deactivate_mesh_anchoring()
+flush_frost_signatures()
