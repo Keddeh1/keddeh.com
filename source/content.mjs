@@ -1,9 +1,13 @@
-import core from './content-core.mjs';
+import core1 from './content-core1.mjs';
+import core2 from './content-core2.mjs';
 import services from './content-services.mjs';
 import products from './content-products.mjs';
-import architecture from './content-architecture.mjs';
+import architecture1 from './content-architecture1.mjs';
+import architecture2 from './content-architecture2.mjs';
 import research from './content-research.mjs';
-import foundries from './content-foundries.mjs';
-import technology from './content-technology.mjs';
-export const pages=[core,services,products,architecture,research,foundries,technology].flat();
+import foundries1 from './content-foundries1.mjs';
+import foundries2 from './content-foundries2.mjs';
+import technology1 from './content-technology1.mjs';
+import technology2 from './content-technology2.mjs';
+export const pages=[core1,core2,services,products,architecture1,architecture2,research,foundries1,foundries2,technology1,technology2].flat();
 export const pageByPath=new Map(pages.map(p=>[p.path,p]));
