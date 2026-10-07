@@ -1,0 +1,18 @@
+{
+  "schema": "keddeh.repository-family.v1",
+  "repository": "Keddeh1/keddeh.com",
+  "family_id": "keddeh.com",
+  "engine_repository": "Keddeh1/KEDDEH-SOVEREIGN-NAMESPACE-RUNTIME",
+  "engine_ref": "d420b5008474cb0dc1b5bf47a7a8433245097072",
+  "runtime_root": "/workspace/braink-setup/families/keddeh.com",
+  "port_offset": 700,
+  "library_manifest": "/workspace/library-files/KEDDEH/2026-10-07/manifest.json",
+  "vfs": {
+    "endpoint": "http://127.0.0.1:17887",
+    "token_file": "/workspace/braink-setup/vfs-hub/token"
+  },
+  "frontage": {
+    "source_root": "/workspace/keddeh.com/frontage",
+    "port": 28080
+  }
+}
