@@ -1,0 +1,44 @@
+{
+  "service": "keddeh_unified_runtime",
+  "status": "formalized",
+  "runtime": "custom-local",
+  "custom_runtime": true,
+  "github_dependencies": false,
+  "platform": "KEDDEH.COM",
+  "architecture": {
+    "kex": "state_geometry",
+    "braink": "execution_fabric",
+    "il_llm": "semantic_substrate",
+    "frost": "threshold_signatures",
+    "mesh": "phase_lock_topology"
+  },
+  "services": {
+    "https": {
+      "protocol": "TLS 1.3",
+      "port": 443,
+      "handler": "StaticHTTPSHandler",
+      "document_root": "apps/www"
+    },
+    "http_redirect": {
+      "protocol": "HTTP/1.1",
+      "port": 80,
+      "handler": "RedirectHTTPHandler",
+      "location": "https://{host}{path}"
+    },
+    "dns_udp": {
+      "protocol": "UDP",
+      "port": 5300,
+      "handler": "DNSUDPServer",
+      "record_types": ["A", "AAAA", "CNAME", "MX"]
+    }
+  },
+  "runtime_policy": {
+    "dependencies": "stdlib_only",
+    "package_model": "local_custom_modules",
+    "venv": true,
+    "self_signed_tls": true,
+    "strict_transport_security": true,
+    "phase_lock_target": 0.297,
+    "coherence_threshold": 0.75
+  }
+}

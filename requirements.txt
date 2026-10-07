@@ -1,0 +1,5 @@
+# Custom runtime dependency policy
+# This project intentionally does not depend on GitHub-hosted runtime packages.
+# All services operate on Python stdlib and local custom runtime modules.
+
+# No external package dependencies required.

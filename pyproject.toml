@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "keddeh-com"
+version = "1.0.0-alpha.1"
+description = "KEDDEH.COM sovereign runtime platform with custom KEX/BRAINK/IL-LLM execution fabric"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "KEDDEH Systems Custom Runtime License" }
+authors = [
+  { name = "Keddeh Systems" }
+]
+keywords = ["dns", "runtime", "custom-runtime", "sovereign-platform", "http", "https", "mesh"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Operating System :: POSIX",
+  "Topic :: Internet :: WWW/HTTP",
+  "Topic :: System :: Networking",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+dependencies = []
+
+[project.optional-dependencies]
+dev = []
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["runtime*"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
