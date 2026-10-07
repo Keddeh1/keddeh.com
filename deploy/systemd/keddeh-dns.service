@@ -1,0 +1,20 @@
+[Unit]
+Description=KEDDEH.COM DNS UDP Service (Port 5300)
+Documentation=https://github.com/Keddeh1/keddeh.com
+After=network.target
+PartOf=keddeh-runtime.service
+
+[Service]
+Type=simple
+User=keddeh
+Group=keddeh
+WorkingDirectory=/opt/keddeh/keddeh.com
+ExecStart=/usr/bin/python3 -c "from runtime.keddeh_venv_runtime import DNSUDPServer; DNSUDPServer.serve(5300)"
+Restart=always
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=keddeh-dns
+
+[Install]
+WantedBy=multi-user.target

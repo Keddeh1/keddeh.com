@@ -1,0 +1,21 @@
+[Unit]
+Description=KEDDEH.COM HTTPS Static Web Service (Port 443)
+Documentation=https://github.com/Keddeh1/keddeh.com
+After=network.target
+PartOf=keddeh-runtime.service
+
+[Service]
+Type=simple
+User=keddeh
+Group=keddeh
+WorkingDirectory=/opt/keddeh/keddeh.com
+ExecStartPre=/bin/bash -c 'mkdir -p /opt/keddeh/keddeh.com/.certs'
+ExecStart=/usr/bin/python3 -c "from runtime.keddeh_venv_runtime import run_https; run_https(443)"
+Restart=always
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=keddeh-https
+
+[Install]
+WantedBy=multi-user.target
