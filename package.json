@@ -1,0 +1,8 @@
+{
+  "name": "keddeh-com-governed-frontage",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {"build":"node build.mjs","test":"python3 tests/dom_audit.py && node --test tests/runtime.test.mjs","start":"node server.mjs"},
+  "engines":{"node":">=20"}
+}
